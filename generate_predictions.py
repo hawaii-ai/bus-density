@@ -101,36 +101,36 @@ def get_dataloaders(batch_size, test_augs, create_numpy=False, archs=None):
     
     if create_numpy:
         val_a = dict()
-        val_a['labels'] = np.zeros(shape=(73930, 1))
-        val_a['pat_ids'] = np.zeros(shape=(73930, 1))
-        val_a['age_us'] = np.zeros(shape=(73930, 1))
-        val_a['age_mg'] = np.zeros(shape=(73930, 1))
-        val_a['cancer'] = np.zeros(shape=(73930, 1))
+        val_a['labels'] = np.zeros(shape=(5, 1))
+        val_a['pat_ids'] = np.zeros(shape=(5, 1))
+        val_a['age_us'] = np.zeros(shape=(5, 1))
+        val_a['age_mg'] = np.zeros(shape=(5, 1))
+        val_a['cancer'] = np.zeros(shape=(5, 1))
 
         val_b = dict()
-        val_b['labels'] = np.zeros(shape=(69842, 1))
-        val_b['pat_ids'] = np.zeros(shape=(69842, 1))
-        val_b['age_us'] = np.zeros(shape=(69842, 1))
-        val_b['age_mg'] = np.zeros(shape=(69842, 1))
-        val_b['cancer'] = np.zeros(shape=(69842, 1))
+        val_b['labels'] = np.zeros(shape=(5, 1))
+        val_b['pat_ids'] = np.zeros(shape=(5, 1))
+        val_b['age_us'] = np.zeros(shape=(5, 1))
+        val_b['age_mg'] = np.zeros(shape=(5, 1))
+        val_b['cancer'] = np.zeros(shape=(5, 1))
 
         test = dict()
-        test['labels'] = np.zeros(shape=(28616, 1))
-        test['pat_ids'] = np.zeros(shape=(28616, 1))
-        test['age_us'] = np.zeros(shape=(28616, 1))
-        test['age_mg'] = np.zeros(shape=(28616, 1))
-        test['cancer'] = np.zeros(shape=(28616, 1))
+        test['labels'] = np.zeros(shape=(5, 1))
+        test['pat_ids'] = np.zeros(shape=(5, 1))
+        test['age_us'] = np.zeros(shape=(5, 1))
+        test['age_mg'] = np.zeros(shape=(5, 1))
+        test['cancer'] = np.zeros(shape=(5, 1))
 
         if archs is not None:
             for name in archs:
-                test[name+'_preds'] = np.zeros(shape=(28616, 4))
-                val_a[name+'_preds'] = np.zeros(shape=(73930, 4))
-                val_b[name+'_preds'] = np.zeros(shape=(69842, 4))
+                test[name+'_preds'] = np.zeros(shape=(5, 4))
+                val_a[name+'_preds'] = np.zeros(shape=(5, 4))
+                val_b[name+'_preds'] = np.zeros(shape=(5, 4))
         
         else:
-            test['preds'] = np.zeros(shape=(28616, 4))
-            val_a['preds'] = np.zeros(shape=(73930, 4))
-            val_b['preds'] = np.zeros(shape=(69842, 4))
+            test['preds'] = np.zeros(shape=(5, 4))
+            val_a['preds'] = np.zeros(shape=(5, 4))
+            val_b['preds'] = np.zeros(shape=(5, 4))
 
         return val_a_loader, val_b_loader, test_loader, val_a, val_b, test
     
@@ -198,11 +198,11 @@ def load_checkpoint_and_create_model(file_path: str, arch: str) -> Module:
     return model
 
 if __name__ == '__main__':
-    densenet = load_checkpoint_and_create_model(file_path="your_densenet_checkpoint.ckpt", arch='densenet')
-    vit32 = load_checkpoint_and_create_model(file_path="your_vit_checkpoint.ckpt", arch='vit')
-    resnet = load_checkpoint_and_create_model(file_path="your_resnet_checkpoint.ckpt", arch='resnet')
+    densenet = load_checkpoint_and_create_model(file_path="checkpoints/densenet_checkpoint.ckpt", arch='densenet')
+    vit32 = load_checkpoint_and_create_model(file_path="checkpoints/vit_checkpoint.ckpt", arch='vit')
+    resnet = load_checkpoint_and_create_model(file_path="checkpoints/resnet_checkpoint.ckpt", arch='resnet')
     
-    test_augs = T.Compose([T.ToTensor(), MinMaxNormalization(), CropSquareResize()])
+    test_augs = T.Compose([T.ToTensor(), MinMaxNormalization(), CropSquareResize(IM_SIZE=IM_SIZE)])
 
     val_a_loader, val_b_loader, test_loader, val_a_np, val_b_np, test_np = get_dataloaders(512, test_augs, create_numpy=True, 
                                                                                         archs=['densenet', 'vit', 'resnet'])
