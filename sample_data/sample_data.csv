@@ -1,6 +1,6 @@
-Image_file,DENSITY_MG,ANALYSIS_ID
-sample1.png,1,123
-sample2.png,3,446
-sample3.png,2,957
-sample4.png,4,662
-sample5.png,4,662
+Image_file,DENSITY_MG,ANALYSIS_ID,_AGE_MG,_AGE_US
+sample1.png,1,123,62,60
+sample2.png,3,446,65,65
+sample3.png,2,957,70,70
+sample4.png,4,662,55,56
+sample5.png,4,662,55,56
