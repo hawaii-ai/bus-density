@@ -6,3 +6,11 @@ This repository is designed to provide implementation of the training, evaluatio
 
 ### Results
 ![AUROC Performance Plot](images/auroc_plot.png)
+
+## Installation and system requirements
+- Tested on Ubuntu 20.04.6 LTS
+- Python version: 3.9.16
+- To install dependencies, run:
+```python3
+python setup.py install
+```
