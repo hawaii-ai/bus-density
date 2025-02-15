@@ -2,7 +2,7 @@
 ---
 ## Deep Learning Predicts Mammographic Breast Density in Clinical Breast Ultrasound Images 
 ###### Github repository containing all relevant code for journal submission 
-This repository is designed to provide implementation of the training, evaluation, and validation (via cancer risk modeling) for our deep learning model which predicts the ACR Breast Imaging and Reporting Data System (BI-RADS) breast composition for mammography categories from breast ultrasound (BUS).  
+This repository is designed to provide implementation of the training, evaluation, and validation for our deep learning model which predicts the ACR Breast Imaging and Reporting Data System (BI-RADS) breast composition for mammography categories from breast ultrasound (BUS).  
 
 ### Results
 ![AUROC Performance Plot](images/auroc_plot.png)
@@ -24,4 +24,3 @@ python setup.py install
     - `graylevel_method.py` does grid searches and saves predictions from an MLP, random forest and logistic regression models from the image histograms written above.
     - `generate_predictions.py` generates predictions from trained deep learning models.
     - `train.py` provides model training code, given optimal hyperparameters found during Optuns runs.
-    - `cancer_risk.ipynb` provides the method for the sampling-based logistic regression model construction used for cancer risk estimates. **Note that the ORs and performance in this notebook are expected to be invalid**, due to the small size of the sample dataset provided. 
