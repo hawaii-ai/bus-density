@@ -4,6 +4,8 @@
 ###### Github repository containing all relevant code for journal submission 
 This repository is designed to provide implementation of the training, evaluation, and validation for our deep learning model which predicts the ACR Breast Imaging and Reporting Data System (BI-RADS) breast composition for mammography categories from breast ultrasound (BUS).  
 
+For model evaluation, use [BUSClean](https://github.com/hawaii-ai/bus-cleaning) (possibly tuned on your dataset) to prepare input BUS scans. Doppler and elastography scans should be excluded, scans should be split if dual-view, scans with calipers and text removed or cropped out from the image. Invalid images and images collected as part of a biposy should be removed. 
+
 ### Results
 ![AUROC Performance Plot](images/auroc_plot.png)
 
@@ -23,4 +25,4 @@ python setup.py install
     - `write_graylevels.py` pulls out image histograms from included datasets and saves them as pickle files.
     - `graylevel_method.py` does grid searches and saves predictions from an MLP, random forest and logistic regression models from the image histograms written above.
     - `generate_predictions.py` generates predictions from trained deep learning models.
-    - `train.py` provides model training code, given optimal hyperparameters found during Optuns runs.
+    - `train.py` provides model training code, given optimal hyperparameters found during Optuna runs.
